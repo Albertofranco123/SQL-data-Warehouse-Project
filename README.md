@@ -29,6 +29,17 @@ The architecture moves data from CSV source files through three transformation l
 | **Silver** | Produces clean and standardized datasets. | Deduplication, normalization, null handling, date validation, derived columns |
 | **Gold** | Delivers business-ready analytical views. | Data integration, business logic, aggregations, dimensional modeling |
 
+### Data Flow and Lineage
+
+The following diagram provides a table-level view of how data moves through the warehouse. CRM and ERP CSV files are first loaded into matching Bronze tables, transformed into clean Silver tables, and then integrated into the Gold analytical model.
+
+![Data Warehouse Flow](docs/data_warehouse_flow.png)
+
+- CRM sales data becomes the `gold.fact_sales` view.
+- CRM customer data is combined with ERP demographics and location data to create `gold.dim_customers`.
+- CRM product data is enriched with ERP category data to create `gold.dim_products`.
+- The resulting Gold views form the star schema used for reporting and analysis.
+
 ## Gold-Layer Data Model
 
 The Gold layer uses a **star schema** consisting of two dimensions and one fact table:
@@ -92,6 +103,7 @@ SQL-data-Warehouse-Project/
 ├── docs/
 │   ├── data_catalog.md
 │   ├── data_warehouse_archi.drawio.png
+│   ├── data_warehouse_flow.png
 │   └── gold_layer_star_schema.drawio.png
 ├── gold/
 │   └── ddl_gold.sql
