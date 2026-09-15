@@ -9,3 +9,5 @@ The following diagram illustrates the data flow from the source systems through 
 ![Data Warehouse Architecture](docs/data_warehouse_archi.drawio.png)
 
 
+## Gold Layer
+![Data Warehouse Architecture](docs/gold_layer_star_schema.drawio.png)
